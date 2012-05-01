@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Brian Bouril - jQuery-tooltipsy</title>
+	<link rel="stylesheet" type="text/css" href="css/tooltip.css">
+
+	<style type="text/css">
+		/* All CSS just for presentational purposes */
+		body { padding:50px 10px 50px; height: 700px; font-family: Arial, "MS Trebuchet", sans-serif; }
+		.code { background: #CCC; padding: 30px; color: #333; font-family: "Courier New", monospace, serif; font-size: 1em; }
+		.code .indent { text-indent: 20px; }
+		#boundry-box { width: 300px; height: 300px; position: relative; border: 1px solid #CCC; }
+		.box { height: 50px; width:50px; position: absolute; background: #999; display: block; }
+		.boxedin { height: 50px; width:50px; position: absolute; background: #999; }
+		.box1 { left: 0; top: 0; }
+		.box2 { right: 0; bottom: 0; }
+		.box3 { right: 0; top: 0; }
+		.box4 { left: 0; bottom: 0; }
+	</style>
+	
+</head>
+<body>
+	
+	
+	<h1>Tooltip Component</h1>
+
+	
+	<h2>Example 1</h2>
+	<p>default setup for the tooltip, positioning will be relative to the positioning of it's element</p>
+	<div class="code">
+			<div>$(selector).tooltip({</div>
+			<div class="indent">container : 'tooltip', //define the id you'd like for the tooltip container</div>
+			<div class="indent">attribute : 'alt', //define the attribute to grab the tooltip text from</div>
+			<div class="indent">actionIn : 'mouseover', //define the action that will trigger the container create</div>
+			<div class="indent">actionOut : 'mouseout', //define the action that will trigger the container destroy (will close no matter what on click of 'body')</div>
+			<!--<div class="indent">positionType : 'toElement', //what to position tooltip to. Default is 'toElement', other option is 'toCursor' ('toCursor' not working yet)</div>-->
+			<div class="indent">delay : 500 //delay between the tooltip triggering and it showing</div>
+			<div>});</div>
+			</br>
+			</br>
+			EVENTS:</br>
+			* beforeLoad - called before the tooltip is loaded</br>
+			* afterLoad - called on complete of the tooltip content being loaded</br>
+	</div>
+	
+	<h3>Positioned boxes with window as their boundry</h3>
+	<div class="box1 box" data="box 1"></div>
+	<div class="box2 box" data="box 2"></div>
+	<div class="box3 box" data="box 3"></div>
+
+	<h3>Inline Links</h3>
+	<a href="#" class="link" alt="You Hovered!!!">Hover Here</a>
+	<a href="#" class="link" alt="You Hovered Here As Well">Hover Here Too</a>
+
+	<h3>Positioned boxes inside of defined boundry</h3>
+	<div id="boundry-box">
+		<div class="box1 boxedin" data="box 4"></div>
+		<div class="box2 boxedin" data="box 5"></div>
+		<div class="box3 boxedin" data="box 6"></div>
+		<div class="box4 boxedin" data="box 7"></div>
+	</div>
+	
+	<script type="text/javascript" src="js/jquery-min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/jquery-tooltip.min.js"></script>
+	<script type="text/javascript">
+
+		$(function() {
+	 		$('.box').tooltip({ 
+	 			attribute: 'data',
+	 			beforeLoad: function(){
+	 				// some callback here
+	 			},
+	 			afterLoad: function(){
+	 				// some callback here
+	 			}
+	 		});
+
+	 		$('.link').tooltip({
+	 			container: 'tooltip'
+	 		});
+
+	 		$('.boxedin').tooltip({
+	 			boundry: '#boundry-box',
+	 			container: 'tooltip',
+	 			attribute: 'data'
+	 		});
+		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+/* 
+
+* Tooltip component
+* written by Brian Bouril
+
+ */
+
+.tooltip {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    z-index: 9996;
+    width: 100px;
+    display: none;
+}
+
+.tooltip {
+    background-color: #6D6E71;
+    border: 1px solid #A7A9AC;
+    border-radius: 6px 6px 6px 6px;
+    color: #FFF;
+    padding: 8px 9px 7px;
+    font-size: .8em;
+}
+
+/* Set offsets for the tooltips based on the "align" class that is added on */
+.tooltip.left { margin-left: -20px; }
+.tooltip.center { margin-left: 0; }
+.tooltip.right { margin-left: 20px; }
+.tooltip.up { margin-top: 10px; }
+.tooltip.down { margin-top: -10px; }
+
+
+.tooltip:after{	position:absolute; z-index:9999; }
+.tooltip.center:after{ left: 50%; margin-left: -10px; }
+.tooltip.left:after{ left: 2px; }
+.tooltip.right:after{ right: 2px; }
+
+.tooltip.down:after {
+	content: url("../img/bubble-arrow-down.png");
+	bottom: -13px;
+}
+
+.tooltip.up:after {
+	content: url("../img/bubble-arrow-up.png");
+	top: -12px;
+}
